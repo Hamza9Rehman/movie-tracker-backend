@@ -1,4 +1,4 @@
-const sequelize = require('../sequelize');
+const sequelize = require("../config/sequelize");
 const User = require('./user');
 const Movie = require('./movie');
 const UserMovie = require('./usermovie');
@@ -9,10 +9,10 @@ Movie.belongsToMany(User, { through: UserMovie });
 (async () => {
   try {
     await sequelize.sync({ alter: true });
-    console.log("Tables created");
+    console.log("Synced successfully");
   } 
   catch (err) {
-    console.error("Tables not created:", err);
+    console.error("Syncing error:", err);
   }
 })();
 

@@ -3,7 +3,7 @@ const { Movie } = require('../models');
 const getAllMovies = async (req, res) => {
   try {
     const movies = await Movie.findAll();
-    res.status(200).json(movies);
+    res.json(movies);
   } 
   catch (err) {
     res.status(500).json({ message: 'Failed to get movies', error: err });
@@ -37,7 +37,7 @@ const deleteMovie = async (req, res) => {
   const { id } = req.params;
   try {
     const deleted = await Movie.destroy({ where: { id } });
-    res.status(200).json({ message: 'Movie deleted successfully' });
+    res.json({ message: 'Movie deleted successfully' });
   } 
   catch (err) {
     res.status(500).json({ message: 'Failed to delete movie', error: err });

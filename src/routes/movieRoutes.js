@@ -1,4 +1,6 @@
 const express = require('express');
+const authenticateToken = require('../middleware/jwtverif');
+
 const router = express.Router();
 
 const {
@@ -8,12 +10,12 @@ const {
   deleteMovie
 } = require('../controllers/movieController');
 
-router.get('/', getAllMovies);
+router.get('/', authenticateToken, getAllMovies);
 
-router.get('/:id', getMovieById);
+router.get('/:id', authenticateToken, getMovieById);
 
-router.post('/', createMovie);
+router.post('/', authenticateToken, createMovie);
 
-router.delete('/:id', deleteMovie);
+router.delete('/:id', authenticateToken, deleteMovie);
 
 module.exports = router;
